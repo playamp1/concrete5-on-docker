@@ -21,7 +21,7 @@ services:
       context: ./docker/app
       dockerfile: Dockerfile
     volumes:
-      - ./src/concrete5-master:/var/www/html/
+      - ./src/concrete5:/var/www/html/concrete5
     links:
       - mysql
 
@@ -30,7 +30,7 @@ services:
     container_name: c5-nginx
     build: ./docker/nginx
     volumes:
-      - ./src/concrete5-master:/var/www/html/
+      - ./src/concrete5:/var/www/html/concrete5
     ports:
       - "80:80"
       - "443:443"

@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- php-fpm "$@"
+fi
+
+if [ -e /var/www/html/concrete5/concrete ]; then
+    echo 'a'
+else
+    cd /var/www/html && composer create-project concrete5/concrete5 && bash /var/www/html/concrete5/concrete/bin/concrete5 c5:install --db-server=mysql --db-username=user --db-password=password --db-database=concrete5db --site=Name --starting-point=elemental_blank --admin-email=hoge@example.com --admin-password=password --site-locale=ja_JP
+fi
+
+exec "$@"

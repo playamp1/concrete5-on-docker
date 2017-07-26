@@ -1,2 +1,1 @@
-DROP DATABASE concrete5db;
 CREATE DATABASE IF NOT EXISTS concrete5db;
