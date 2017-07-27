@@ -6,10 +6,18 @@ if [ "${1#-}" != "$1" ]; then
 	set -- php-fpm "$@"
 fi
 
+version=`head -n 1 /var/www/html/.version`
+
+if [ $version = 'lastest' ]; then
+    createproject='composer create-project concrete5/concrete5'
+else
+    createproject='composer create-project concrete5/concrete5:'$test
+fi
+
 if [ -e /var/www/html/concrete5/concrete ]; then
     echo 'a'
 else
-    cd /var/www/html && composer create-project concrete5/concrete5 && bash /var/www/html/concrete5/concrete/bin/concrete5 c5:install --db-server=mysql --db-username=user --db-password=password --db-database=concrete5db --site=Name --starting-point=elemental_blank --admin-email=hoge@example.com --admin-password=password --site-locale=ja_JP
+    cd /var/www/html && $createproject && bash /var/www/html/concrete5/concrete/bin/concrete5 c5:install --db-server=mysql --db-username=user --db-password=password --db-database=concrete5db --site=Name --starting-point=elemental_blank --admin-email=hoge@example.com --admin-password=password --site-locale=ja_JP
 fi
 
 exec "$@"

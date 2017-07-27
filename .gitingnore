@@ -1,6 +1,6 @@
-src
-src/*
+./src
+./src/*
 !.gitkeep
-db_data
-db_data/*
-.DS_Store
+./db_data
+./db_data/*
+*********.DS_Store
