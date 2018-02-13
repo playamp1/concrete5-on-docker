@@ -17,7 +17,7 @@ fi
 if [ -e /var/www/html/concrete5/concrete ]; then
     echo 'a'
 else
-    cd /var/www/html && $createproject && bash /var/www/html/concrete5/concrete/bin/concrete5 c5:install --db-server=mysql --db-username=user --db-password=password --db-database=concrete5db --site=Name --starting-point=elemental_blank --admin-email=hoge@example.com --admin-password=password --site-locale=ja_JP
+    cd /var/www/html && $createproject && php /var/www/html/concrete5/concrete/bin/concrete5 c5:install --db-server=mysql --db-username=user --db-password=password --db-database=concrete5db --site=Name --starting-point=elemental_blank --admin-email=hoge@example.com --admin-password=password
 fi
 
 exec "$@"
